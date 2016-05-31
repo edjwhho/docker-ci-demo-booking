@@ -13,7 +13,7 @@ node {
 
 stage "Build application WAR"
 node {
-    myScript.mvn 'clean package -DskipTests'
+    myScript.mvn 'package -DskipTests'
 }
 
 stage "RUN HELLO TEST"
@@ -24,10 +24,10 @@ node {
 
 stage "Build Docker image"
 node {
-    sh 'docker build -t ${env.JOB_NAME}${env.BUILD_NUMBER} . '
+    sh 'docker build -t ${BUILD_TAG} . '
 }
 
 stage "Run container"
 node {
-    sh 'docker run -d -p 8080 ${env.JOB_NAME}${env.BUILD_NUMBER} '
+    sh 'docker run -d -p 8080 ${BUILD_TAG} '
 }
