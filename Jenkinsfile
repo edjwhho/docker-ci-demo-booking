@@ -25,5 +25,5 @@ stage "Run container"
 node {
     sh 'docker run --name ${BUILD_TAG} -d -p 8080 ${BUILD_TAG} '
     sh 'echo La redirection du port 8080 est :'
-    sh """ docker inspect -f '{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' ${BUILD_TAG} """
+    sh """ docker inspect -f '{{(index (index .NetworkSettings.Ports \\"8080/tcp\\") 0).HostPort}}' ${BUILD_TAG} """
 }
