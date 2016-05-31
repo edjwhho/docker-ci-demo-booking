@@ -16,4 +16,12 @@ node {
     myScript.mvn 'clean package'
 }
 
+stage "Build Docker image"
+node {
+    sh 'docker build -t treeptik/${env.JOB_NAME}${env.BUILD_NUMBER} . '
+}
 
+stage "Run container"
+node {
+    sh 'docker run -d -p 8080 ${env.JOB_NAME}${env.BUILD_NUMBER} '
+}
