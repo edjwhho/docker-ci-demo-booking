@@ -16,6 +16,12 @@ node {
     myScript.mvn 'clean package'
 }
 
+stage "RUN HELLO TEST"
+node {
+    sh 'echo hello world '
+}
+
+
 stage "Build Docker image"
 node {
     sh 'docker build -t treeptik/${env.JOB_NAME}${env.BUILD_NUMBER} . '
