@@ -18,13 +18,13 @@ node {
 
 stage "RUN HELLO TEST"
 node {
-    sh 'echo hello world '
+    sh 'echo hello world  ${env.JOB_NAME}${env.BUILD_NUMBER} '
 }
 
 
 stage "Build Docker image"
 node {
-    sh 'docker build -t treeptik/${env.JOB_NAME}${env.BUILD_NUMBER} . '
+    sh 'docker build -t ${env.JOB_NAME}${env.BUILD_NUMBER} . '
 }
 
 stage "Run container"
