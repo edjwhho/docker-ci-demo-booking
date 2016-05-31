@@ -13,12 +13,12 @@ node {
 
 stage "Build application WAR"
 node {
-    myScript.mvn 'clean package'
+    myScript.mvn 'clean package -DskipTests'
 }
 
 stage "RUN HELLO TEST"
 node {
-    sh 'echo hello world  ${env.JOB_NAME}${env.BUILD_NUMBER} '
+    sh 'env | sort '
 }
 
 
