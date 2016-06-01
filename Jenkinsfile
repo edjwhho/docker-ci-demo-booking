@@ -26,6 +26,11 @@ node {
     sh 'docker run --name ${BUILD_TAG} -d -p 8080 ${BUILD_TAG} '
 }
 
+stage "Run IT Test"
+node {
+    myScript.mvn 'failsafe:integration-test'
+}
+
 stage "Push img on repo"
 node {
     sh 'docker tag ${BUILD_TAG} localhost:5000/${BUILD_TAG}'

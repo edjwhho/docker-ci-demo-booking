@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.springframework.webflow.samples</groupId>
-  <artifactId>booking-mvc</artifactId>
-  <packaging>war</packaging>
-  <name>Hotel Booking : Spring MVC + Web Flow + JSP</name>
-  <version>1.0.0.BUILD-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.springframework.webflow.samples</groupId>
+	<artifactId>booking-mvc</artifactId>
+	<packaging>war</packaging>
+	<name>Hotel Booking : Spring MVC + Web Flow + JSP</name>
+	<version>1.0.0.BUILD-SNAPSHOT</version>
 
 	<properties>
 		<webflow-version>2.4.0.RELEASE</webflow-version>
@@ -26,8 +26,12 @@
 			<id>spring</id>
 			<name>Spring Repository</name>
 			<url>http://repo.spring.io/milestone</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
@@ -44,7 +48,7 @@
 	</dependencyManagement>
 
 	<dependencies>
-	
+
 		<!-- Thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
@@ -71,7 +75,7 @@
 			<artifactId>thymeleaf-extras-conditionalcomments</artifactId>
 			<version>${thymeleaf-extras-conditionalcomments-version}</version>
 		</dependency>
-		
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -90,7 +94,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-		</dependency>				
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -134,8 +138,8 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${springsecurity-version}</version>					
-        </dependency>	
+			<version>${springsecurity-version}</version>
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
@@ -160,7 +164,7 @@
 			<version>1.2.16</version>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<!-- Database, JPA -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
@@ -173,7 +177,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.6.9.Final</version>
 		</dependency>
-		
+
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -226,18 +230,16 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.3.0.Final</version>
 		</dependency>
-		<!--
-			JAXB is needed when running on Java 5. In this environment these dependencies have to be added 
-			(unless xml	configuration is explicitly disabled via Configuration.ignoreXmlConfiguration) 
-			On Java 6 jaxb is part of the runtime environment.
-		-->
-        <dependency>
-          <groupId>javax.xml.bind</groupId>
-          <artifactId>jaxb-api</artifactId>
-          <version>2.1</version>
-        </dependency>
-        
-		<!--  Joda Time -->
+		<!-- JAXB is needed when running on Java 5. In this environment these dependencies 
+			have to be added (unless xml configuration is explicitly disabled via Configuration.ignoreXmlConfiguration) 
+			On Java 6 jaxb is part of the runtime environment. -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<!-- Joda Time -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -248,7 +250,7 @@
 			<artifactId>joda-time-jsptags</artifactId>
 			<version>1.1.1</version>
 			<scope>runtime</scope>
-		</dependency>		
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -268,7 +270,7 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -281,7 +283,7 @@
 			<version>${selenium.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -315,11 +317,29 @@
 					</includes>
 				</configuration>
 			</plugin>
+
 			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.1</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.13</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>failsafe-integration-tests</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
+
+
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
