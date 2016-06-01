@@ -19,11 +19,11 @@
 		<thymeleaf-extras-conditionalcomments-version>2.1.1.RELEASE</thymeleaf-extras-conditionalcomments-version>
 		<tiles-version>2.2.2</tiles-version>
 		<selenium.version>2.45.0</selenium.version>
-		
+
 		<db.user>root</db.user>
 		<db.password>root</db.password>
-		<db.name>booking</db.name>	
-		
+		<db.name>booking</db.name>
+
 	</properties>
 
 	<repositories>
@@ -177,6 +177,16 @@
 			<version>2.2.9</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+			<scope>runtime</scope>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -361,14 +371,14 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		
+
 	</build>
 
 </project>
