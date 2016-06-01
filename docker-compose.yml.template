@@ -3,6 +3,7 @@ version: '2'
 services:
   tomcat8:
     build: .
+    image: tomcat-#BUILDTAG
     container_name: tomcat-#BUILDTAG
     ports:
       - "8080"
