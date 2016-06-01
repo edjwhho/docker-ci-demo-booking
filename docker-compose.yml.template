@@ -10,14 +10,14 @@ services:
     networks:
       - net-#BUILDTAG
     environment:
-      - DB_HOST=mysql-#BUILDTAG
+      - DB_HOST=db-#BUILDTAG
     links:
       - mysql5
     
 
   mysql5:
     image: mysql:5.7
-    container_name: mysql-#BUILDTAG
+    container_name: db-#BUILDTAG
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=booking
