@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  tomcat8:
+    build: .
+    container_name: tomcat-#BUILDTAG
+    ports:
+      - "8080"
+    networks:
+      - net-#BUILDTAG
+    depends_on:
+      - mysql5
+    
+
+  mysql5:
+    image: mysql:5.7
+    container_name: mysql5
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - net-#BUILDTAG
+
+networks:
+  net-#BUILDTAG:
+    driver: bridge
