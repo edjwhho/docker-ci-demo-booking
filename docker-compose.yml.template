@@ -9,6 +9,8 @@ services:
       - "8080"
     networks:
       - net-#BUILDTAG
+    environment:
+      - DB_HOST=mysql-#BUILDTAG
     depends_on:
       - mysql5
     
@@ -18,6 +20,7 @@ services:
     container_name: mysql-#BUILDTAG
     environment:
       - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=booking
     networks:
       - net-#BUILDTAG
 
