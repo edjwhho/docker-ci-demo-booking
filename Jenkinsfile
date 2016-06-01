@@ -34,5 +34,5 @@ node {
 stage "Push img on repo"
 node {
     sh 'docker tag tomcat-${BUILD_TAG} localhost:5000/${BUILD_TAG}'
-    sh 'docker push localhost:5000/tomcat-${BUILD_TAG}'
+    sh 'docker push localhost:5000/${BUILD_TAG}'
 }
