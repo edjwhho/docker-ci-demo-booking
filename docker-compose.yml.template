@@ -9,7 +9,7 @@ services:
       - "8080"
     networks:
       - net-#BUILDTAG
-    depends_on:
+    links:
       - mysql5
     
 
