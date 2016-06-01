@@ -44,7 +44,7 @@ public class DataAccessConfig {
 	@Bean
 	public DataSource dataSource() {
 		
-		String dbHost = System.getProperty("DB_HOST");
+		String dbHost = System.getenv("DB_HOST");
 		String dbUser = env.getProperty("db.user");
 		String dbPassword = env.getProperty("db.password");
 
