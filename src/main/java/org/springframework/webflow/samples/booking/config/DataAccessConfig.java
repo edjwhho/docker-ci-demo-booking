@@ -35,17 +35,6 @@ public class DataAccessConfig {
 	}
 
 	
-	@Bean(name="containerconf")
-	public ContainerConf getContainerConf(){
-		
-		String hostname = System.getenv("HOSTNAME");
-		ContainerConf c = new ContainerConf();
-		c.setHostName(hostname);
-		
-		return c;
-		
-	}
-	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		/*LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
