@@ -53,7 +53,7 @@ public class DataAccessConfig {
 		String dbUrl = "jdbc:mysql://"+ dbHost +":3306/" + dbName;
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource(dbUrl, dbUser, dbPassword);
-		dataSource.setDriverClassName("com.mysql.jdbc.jdbc2.optional.MysqlDataSource");
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		
 		return dataSource;
 	}
