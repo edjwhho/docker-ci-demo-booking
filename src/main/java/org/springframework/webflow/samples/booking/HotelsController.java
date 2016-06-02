@@ -24,7 +24,11 @@ public class HotelsController {
 	@RequestMapping(value = "/intro", method = RequestMethod.GET)
 	public void intro(Model model) {
 		
+		
 		String hostname = System.getenv("HOSTNAME");
+		
+		System.out.println("++ CONTAINER :  " + hostname);
+
 		ContainerConf c = new ContainerConf();
 		c.setHostName(hostname);
 		
