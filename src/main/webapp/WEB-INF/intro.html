@@ -49,9 +49,7 @@
 
 <div>
     <h1>Welcome Spring  ${containerconf.hostname} </h1>
-    <p >
-        This sample demonstrates how to use Spring MVC and Spring Web Flow together with Thymeleaf and Tiles.
-    </p>
+    <p th:text="${containerconf.hostname}"> .... </p>
     <hr />
     <p>
         The key features illustrated in this sample include:
