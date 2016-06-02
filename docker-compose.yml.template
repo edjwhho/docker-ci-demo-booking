@@ -7,11 +7,9 @@ services:
     container_name: tomcat-#BUILDTAG
     ports:
       - "8080"
-    networks:
-      - net-#BUILDTAG
     environment:
       - DB_HOST=db-#BUILDTAG
-    links:
+    depends_on:
       - mysql5
     
 
@@ -21,9 +19,4 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=booking
-    networks:
-      - net-#BUILDTAG
 
-networks:
-  net-#BUILDTAG:
-    driver: bridge

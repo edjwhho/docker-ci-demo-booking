@@ -6,6 +6,11 @@ node {
     myScript = load 'script.groovy'
 }
 
+stage "Run unit test"
+node {
+    myScript.mvn 'test'
+}
+
 stage "Build application WAR"
 node {
     myScript.mvn 'package -DskipTests'
@@ -19,4 +24,15 @@ node {
 stage "Run container"
 node {
     sh 'docker-compose  -f docker-compose.yml up -d'
+}
+
+stage "Run IT Test"
+node {
+    myScript.mvn 'failsafe:integration-test'
+}
+
+stage "Push img on repo"
+node {
+    sh 'docker tag tomcat-${BUILD_TAG} localhost:5000/tomcat-${BUILD_TAG}'
+    sh 'docker push localhost:5000/tomcat-${BUILD_TAG}'
 }
