@@ -20,21 +20,6 @@ public class HotelsController {
 		this.bookingService = bookingService;
 	}
 
-
-	@RequestMapping(value = {"/intro", "/"}, method = RequestMethod.GET)
-	public void intro(Model model) {
-		
-		
-		String hostname = System.getenv("HOSTNAME");
-		
-		System.out.println("++ CONTAINER :  " + hostname);
-
-		ContainerConf containerconf = new ContainerConf();
-		containerconf.setHostName(hostname);
-		
-		model.addAttribute(containerconf);
-	}
-	
 	@RequestMapping(value = "/hotels/search", method = RequestMethod.GET)
 	public void search(SearchCriteria searchCriteria, Principal currentUser, Model model) {
 		if (currentUser != null) {
