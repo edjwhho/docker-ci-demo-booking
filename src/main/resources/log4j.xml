@@ -28,15 +28,15 @@
 	</logger>
 
 	<logger name="org.springframework.orm">
-		<level value="warn" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.springframework.webflow">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<logger name="org.thymeleaf">
