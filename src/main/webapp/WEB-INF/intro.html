@@ -50,7 +50,7 @@
 <div>
     <h1>Welcome Spring  </h1>
     
-    <H1 th:text="CONTAINER : ${ @environment.getProperty('HOSTNAME') }"> .... </H1>
+    <H1 th:text="${@environment.getProperty('HOSTNAME')}"> .... </H1>
     <hr />
     <p>
         The key features illustrated in this sample include:
