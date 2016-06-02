@@ -37,7 +37,9 @@ node {
     sh 'docker push localhost:5000/tomcat-${BUILD_TAG}'
 }
 
+/*
 stage "Stop container"
 node {
     sh 'docker-compose  -f docker-compose.yml down '
 }
+*/
