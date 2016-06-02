@@ -35,7 +35,7 @@ public class DataAccessConfig {
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+		/*LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
 		
 		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -44,7 +44,13 @@ public class DataAccessConfig {
 		hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
 		hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
 		
-		emf.setJpaVendorAdapter(hibernateJpaVendorAdapter);
+		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+		emf.setJpaPropertyMap(Collections.singletonMap("hibernate.session_factory_name", "mySessionFactory"));
+		*/
+		
+		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+		emf.setDataSource(dataSource());
+		emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 		emf.setJpaPropertyMap(Collections.singletonMap("hibernate.session_factory_name", "mySessionFactory"));
 		return emf;
 	}
