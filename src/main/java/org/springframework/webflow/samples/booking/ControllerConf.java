@@ -2,8 +2,10 @@ package org.springframework.webflow.samples.booking;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @ControllerAdvice
+@SessionAttributes(types=ContainerConf.class)
 public class ControllerConf {
 
 	@ModelAttribute("containerconf")
