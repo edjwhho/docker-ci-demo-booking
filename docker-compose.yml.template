@@ -10,7 +10,7 @@ services:
     environment:
       - DB_HOST=db-#BUILDTAG
     depends_on:
-      - mysql5
+      - mysql-#BUILDTAG
     
 
   mysql-#BUILDTAG:
