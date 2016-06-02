@@ -21,7 +21,7 @@ public class HotelsController {
 	}
 
 
-	@RequestMapping(value = "/intro", method = RequestMethod.GET)
+	@RequestMapping(value = {"/intro", "/"}, method = RequestMethod.GET)
 	public void intro(Model model) {
 		
 		
@@ -29,10 +29,10 @@ public class HotelsController {
 		
 		System.out.println("++ CONTAINER :  " + hostname);
 
-		ContainerConf c = new ContainerConf();
-		c.setHostName(hostname);
+		ContainerConf containerconf = new ContainerConf();
+		containerconf.setHostName(hostname);
 		
-		model.addAttribute("containerconf", c);
+		model.addAttribute(containerconf);
 	}
 	
 	@RequestMapping(value = "/hotels/search", method = RequestMethod.GET)
