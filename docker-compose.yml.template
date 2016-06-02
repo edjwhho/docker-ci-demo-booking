@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  tomcat8:
+  tomcat-#BUILDTAG:
     build: .
     image: tomcat-#BUILDTAG
     container_name: tomcat-#BUILDTAG
@@ -13,7 +13,7 @@ services:
       - mysql5
     
 
-  mysql5:
+  mysql-#BUILDTAG:
     image: mysql:5.7
     container_name: db-#BUILDTAG
     environment:
