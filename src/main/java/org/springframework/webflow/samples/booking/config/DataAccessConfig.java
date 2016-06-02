@@ -17,6 +17,7 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.webflow.samples.booking.ContainerConf;
 
 @Configuration
 @EnableTransactionManagement
@@ -33,6 +34,18 @@ public class DataAccessConfig {
 		return txManager;
 	}
 
+	
+	@Bean(name="containerconf")
+	public ContainerConf getContainerConf(){
+		
+		String hostname = System.getenv("HOSTNAME");
+		ContainerConf c = new ContainerConf();
+		c.setHostName(hostname);
+		
+		return c;
+		
+	}
+	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		/*LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
