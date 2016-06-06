@@ -4,7 +4,7 @@ stage "Init SCM"
 node {
     checkout scm
     myScript = load 'script.groovy'
-    sh 'cd /vagrant/ucp-bundle-admin && source env.sh'
+    sh 'sh /vagrant/ucp-bundle-admin/start_env.sh'
 }
 
 stage "Run unit test"
