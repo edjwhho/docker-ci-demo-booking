@@ -34,7 +34,7 @@ node {
 
 stage "Push img on repo"
 node {
-    sh 'docker login -u admin -p treeptik -e c.vandome@treeptik.fr'
+    sh 'docker login -u cvandome -p treeptik -e c.vandome@treeptik.fr 192.168.50.11'
     sh 'docker tag tomcat-${BUILD_TAG} 192.168.50.11/tomcat-${BUILD_TAG}'
     sh 'docker push 192.168.50.11/tomcat-${BUILD_TAG}'
 }
