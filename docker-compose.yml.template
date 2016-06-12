@@ -9,6 +9,9 @@ services:
       - "8080"
     environment:
       - DB_HOST=db-#BUILDTAG
+    labels:
+      - "interlock.hostname=test"
+      - "interlock.domain=local"
     depends_on:
       - mysql-#BUILDTAG
     
