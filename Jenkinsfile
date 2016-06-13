@@ -35,8 +35,8 @@ node {
 stage "Push img on repo"
 node {
     sh 'env'
-    sh 'docker tag tomcat-booking-master 192.168.50.11/admin/booking:master-${BUILD_NUMBER}'
-    sh 'docker login -u admin -p treeptik -e c.vandome@treeptik.fr 192.168.50.11 && docker push 192.168.50.11/admin/booking:master-${BUILD_NUMBER}'
+    sh 'docker tag tomcat-${BUILD_TAG} 192.168.50.11/admin/booking:${BRANCH_NAME}'
+    sh 'docker login -u admin -p treeptik -e c.vandome@treeptik.fr 192.168.50.11 && docker push 192.168.50.11/admin/booking:${BRANCH_NAME}'
 }
 
 /*

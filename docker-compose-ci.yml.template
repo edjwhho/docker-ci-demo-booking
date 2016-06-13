@@ -3,7 +3,7 @@ version: '2'
 services:
   tomcat-#BUILDTAG:
     build: .
-    image: tomcat-booking-master
+    image: tomcat-#BUILDTAG
     container_name: tomcat-#BUILDTAG
     ports:
       - "8080"
