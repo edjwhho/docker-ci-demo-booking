@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  tomcat-#BUILDTAG:
+    build: .
+    image: tomcat-#BUILDTAG
+    container_name: tomcat-#BUILDTAG
+    ports:
+      - "8080"
+    environment:
+      - DB_HOST=db-#BUILDTAG
+    labels:
+      - "interlock.hostname=test"
+      - "interlock.domain=local"
+    depends_on:
+      - mysql-#BUILDTAG
+    
+
+  mysql-#BUILDTAG:
+    image: mysql:5.7
+    container_name: db-#BUILDTAG
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=booking
+
