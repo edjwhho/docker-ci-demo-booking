@@ -1,25 +1,62 @@
 version: '2'
 
 services:
-  tomcat-#BUILDTAG:
-    build: .
-    image: tomcat-#BUILDTAG
-    container_name: tomcat-#BUILDTAG
+  tomcat-booking:
+    image: 192.168.50.11/admin/booking:master
     ports:
       - "8080"
     environment:
-      - DB_HOST=db-#BUILDTAG
+      - DB_HOST=db-booking
     labels:
       - "interlock.hostname=test"
       - "interlock.domain=local"
     depends_on:
-      - mysql-#BUILDTAG
+      - mysql-booking
+      - nginx
+      - interlock
     
-
-  mysql-#BUILDTAG:
+  mysql-booking:
     image: mysql:5.7
-    container_name: db-#BUILDTAG
+    container_name: db-booking
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=booking
+
+  interlock:
+    image: ehazlett/interlock:master
+    command: -D run
+    tty: true
+    ports:
+      - 8080
+    environment:
+      INTERLOCK_CONFIG: |
+          ListenAddr = ":8080"
+          DockerURL = "tcp://192.168.50.10:2376"
+          TLSCACert = "/certs/ca.pem"
+          TLSCert = "/certs/cert.pem"
+          TLSKey = "/certs/key.pem"
+
+          [[Extensions]]
+          Name = "nginx"
+          ConfigPath = "/etc/nginx/nginx.conf"
+          PidPath = "/etc/nginx/nginx.pid"
+          MaxConn = 1024
+          Port = 80
+    volumes:
+      - /vagrant/ucp-bundle-admin:/certs
+    restart: always
+    depends_on:
+      - nginx
+    
+  nginx:
+    image: nginx:latest
+    entrypoint: nginx
+    command: -g "daemon off;" -c /etc/nginx/nginx.conf
+    ports:
+      - 8888:80
+    labels:
+      - "interlock.ext.name=nginx"
+    restart: always
+    environment:
+      - "constraint:node==dd-node1"
 
