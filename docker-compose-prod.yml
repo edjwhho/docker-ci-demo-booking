@@ -23,7 +23,7 @@ services:
       - MYSQL_DATABASE=booking
 
   interlock:
-    image: ehazlett/interlock:master
+    image: ehazlett/interlock:1.2.0
     command: -D run
     tty: true
     ports:
